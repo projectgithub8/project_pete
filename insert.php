@@ -1,5 +1,5 @@
 <?php
-include_once('conn.php');
+include_once('conn.php'); //
 $d_id2 = $_POST['d_id2'];
 $d_name = $_POST['d_name'];
 $d_eng = $_POST['d_eng'];
