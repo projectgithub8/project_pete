@@ -33,7 +33,7 @@ $rowpro = mysqli_fetch_array($respro, MYSQLI_ASSOC);
                     $result= mysqli_query($conn,$sql);
                 ?>
                 <select name = "id_sub" id = "id_sub">
-                    <option value = "">---กรุณาเลือกกลุ่มเรียน---</option>  
+                    <option value = "">---กรุณาเลือกกลุ่มวิชา---</option>  
                     <?php
                         while ($row= mysqli_fetch_array($result, MYSQLI_NUM)) {
 							if ( $rowpro['id_sub']== $row[0] ){

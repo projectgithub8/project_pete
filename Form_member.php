@@ -22,7 +22,7 @@
 		<tr><td><b> </td><td> </td></tr>
 		<tr><td><b></td>
 		<td> <input type = "submit" value = "เพิ่มข้อมูล">
-			 <input type = "reset" value = "ล้างข้อมูล"><br> </td></tr>
+			 <input type = "reset" value = "ล้างข้อมูล"><br> </td></tr>//5678
 	</table> <br>
 </form>
 </body>

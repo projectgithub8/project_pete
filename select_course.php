@@ -102,7 +102,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 								while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 							?>
 							<tr>
-								<td><center><?php echo $row['name_sub']; ?></td>
+								<td><?php echo $row['name_sub']; ?></td>
 								<td><center><?php echo $row['d_id2']; ?></td>
 								<td><?php echo $row['d_name']; ?></td>
 								<td><?php echo $row['d_eng']; ?></td>
