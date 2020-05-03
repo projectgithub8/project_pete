@@ -1,5 +1,5 @@
 <?php
-    require 'DB.php';
+    require 'DB.php';//5678
    ?>
 <!DOCTYPE html>
 <html>
