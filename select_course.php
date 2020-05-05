@@ -1,3 +1,4 @@
+<link rel=stylesheet" href=background.css">
 <center><img src="header.jpg"></center>
 <form method="get" id="form" enctype="multipart/form-data" action="" >
 <BR><strong><center>ค้นหาข้อมูล</strong>
