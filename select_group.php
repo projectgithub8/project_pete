@@ -1,4 +1,4 @@
-<center><img src="header.jpg"></center>//5678
+<center><img src="header.jpg"></center>
 <form method="get" id="form" enctype="multipart/form-data" action="" >
 <BR><strong><center>ค้นหาข้อมูล</strong>
 	<input type="text" name="search" size="30" value="" autocomplete="off">
