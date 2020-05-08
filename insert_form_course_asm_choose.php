@@ -1,10 +1,3 @@
-<center><img src="header.jpg"></center>//5678
-<form method="get" id="form" enctype="multipart/form-data" action="" >
-<BR><strong><center>ค้นหาข้อมูล</strong>
-	<input type="text" name="search" size="30" value="" autocomplete="off">
-	<input type="submit" value="ค้นหาข้อมูล"></center>
-</form>
-<font size ="5" ><center><b><u>แสดงข้อมูลกลุ่มวิชา</b></u></center></font>
 <?php
 include_once('conn.php');
 $search = isset($_GET['search']) ? $_GET['search']:'';
@@ -80,6 +73,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+	<form action="insert_course.php" method="post">
 		<div" rel="nofollow">
 			<div style="height: 20px;"></div>
 			<div class="row">
@@ -89,9 +83,11 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 					<table width="80%" class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr class="info" >
-							<th>ชื่อกลุ่มวิชา</th>
-							<th><center>แก้ไขข้อมูล</th>
-							<th><center>ลบข้อมูล</th>
+							<th><center>ลำดับ</th>
+							<th><center>มาตรฐานการเรียนรู้</th>
+							<th><center>รหัสมาตรฐานย่อย</th>
+							<th><center>ชื่อมาตรฐานการเรียนรู้ย่อย</th>
+							<th><center>คลิกเกณฑ์ประเมิน</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -99,9 +95,11 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 								while($crow = mysqli_fetch_array($nquery)){
 							?>
 							<tr>
-								<td><?php echo $crow['name_sub']; ?></td>
-								<td><center><?php echo "<a href='update_form_group.php?id_sub=".$crow['id_sub']."'><img src='edit.png' width='20px' height='20px'></a></td></a>"; ?></td>
-								<td><center><?php echo "<a href='delete_group.php?id_sub=".$crow['id_sub']."' onclick='return confirm(\"คุณต้องการที่จะลบข้อมูลนี้หรือไม่ ?\")'><img src='delete.png' width='20px' height='20px'></a></td></a>"; ?></td>
+								<td><center></td>
+								<td><center></td>
+								<td><center></td>
+								<td><center></td>
+								<td><center><input type ="checkbox" name="choose" value="choose"></td>
 							</tr>
 							<?php
 									}
@@ -114,13 +112,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 				</div>
 			</div>
 		</div>
+		<center><input type= "submit" value="บันทึก">
+		<input type= "reset" value="ยกเลิก"></center>
 	</body>
 </html>
-
-<!-- Ref : 
-
-	https://www.sourcecodester.com/tutorials/php/11606/simple-pagination-using-phpmysqli.html
-
-	-->
-	<a href="insert_form_group.php"><center>เพิ่มข้อมูล</center></a>
-	
