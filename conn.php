@@ -1,16 +1,14 @@
 <?php
-// conn.php
 $host = "127.0.0.1";
 $user = "root";
 $pass = "";
 $db = "its";
-$conn = new mysqli ($host,$user,$pass,$db);
-
+$conn = new mysqli($host,$user,$pass,$db);
 if(mysqli_connect_errno())
 {
 	echo "Connect Failed ".mysqli_connect_error();
 }else{
-	//echo "Connect ".$db." OK";
+	/*echo "Connect ".$db." OK";*/
 	$conn -> query("set name utf8"); 
 }
 ?>

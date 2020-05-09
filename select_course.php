@@ -1,18 +1,56 @@
+<?php
+	require_once 'conn.php';
+	$sql_gsub = "SELECT id_sub, name_sub FROM group_sub order by name_sub";
+	$q_gsub= mysqli_query($conn,$sql_gsub);
+?>
 <center><img src="header.jpg"></center>
 <form method="get" id="form" enctype="multipart/form-data" action="" >
-<BR><strong><center>ค้นหาข้อมูล</strong>
-	<input type="text" name="search" size="30" value="" autocomplete="off">
+<BR><strong><center><label for="groupid">เลือกกลุ่มเรียน</label></strong>
+    <select id="groupid" name="groupid">
+	            <option value="0">ทั้งหมด</option>
+    <?php
+	   	while($row_gsub = mysqli_fetch_array($q_gsub, MYSQLI_ASSOC))
+		{
+			echo "<option value='".$row_gsub["id_sub"]."'>".$row_gsub["name_sub"]."</option>";
+		}
+	?>
+	</select>
+<BR><strong><center>ชื่อรายวิชาภาษาไทย</strong>
+	<input type="text" name="cname_th" size="30" value="" autocomplete="off">
+<BR><strong><center>ชื่อรายวิชาภาษาอังกฤษ</strong>
+	<input type="text" name="cname_en" size="30" value="" autocomplete="off">
 	<input type="submit" value="ค้นหาข้อมูล"></center>
 </form>
 <font size ="5" ><center><b><u>แสดงข้อมูลรายวิชา</b></u></center></font>
 <?php
 	require 'conn.php';
-	$search = isset($_GET['search']) ? $_GET['search']: '';
-	$query = mysqli_query($conn,"SELECT COUNT(d_id2) FROM course WHERE d_name LIKE '%$search%'");
+	if (!empty($_GET['groupid']) || !empty($_GET['cname_th']) || !empty($_GET['cname_en']) )
+	{
+	   $search = " where ";
+	   if ($_GET['groupid']!=0) { $search .= " course.id_sub = ".$_GET['groupid']." "; }
+	   if (!empty($_GET['cname_th']) ) { 
+			if($search != " where ") {
+				$search .= " and ";
+			}
+			$search .= " course.d_name like '%".$_GET['cname_th']."%' ";
+		} 
+	   if (!empty($_GET['cname_en']) ) {
+			if($search != " where ") {
+				$search .= " and ";
+			}
+			$search .= " course.d_eng like '%".$_GET['cname_en']."%' "; 
+		} 
+	}else{
+		$search = " ";
+	}
+	//$search = isset($_GET['groupid']) ? $_GET['groupid']: '';
+	$sql_count = "SELECT COUNT(d_id2) FROM course $search ;";
+	//echo "SQL : ".$sql_count."<BR>";
+	$query = mysqli_query($conn,$sql_count);
 	$row = mysqli_fetch_row($query);
-
+  
 	$rows = $row[0];
-
+    //echo "All row course  ".$rows."<BR>";
 	$page_rows = 15;  //จำนวนข้อมูลที่ต้องการให้แสดงใน 1 หน้า  ตย. 5 record / หน้า 
 
 	$last = ceil($rows/$page_rows);
@@ -36,10 +74,11 @@
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-	$q = "select * FROM course WHERE d_name";
     $q = "select group_sub.name_sub, course.d_id, course.id_sub, course.d_id2, course.d_name, course.d_eng, course.d_credit ";
-    $q .= "from course inner join group_sub ON group_sub.id_sub = course.id_sub ";	
-	$q .= "order by course.d_id, course.d_id $limit";
+    $q .= "from course inner join group_sub ON group_sub.id_sub = course.id_sub ";
+	$q .= " $search ";	
+	$q .= "order by course.id_sub, course.d_id $limit";
+	//echo "SQL : ".$q."<BR>";
 	$result = mysqli_query($conn,$q);
 
 	$paginationCtrls = '';
@@ -77,6 +116,14 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"" rel="nofollow">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+		body{
+			background: url(.png) no-repeat center center fixed; 
+			background-size: 100% 100%;
+			height: auto;
+			width: 100%;
+		}
+		</style>
 	</head>
 	<body>
 		<div" rel="nofollow">

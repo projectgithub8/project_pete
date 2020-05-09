@@ -4,16 +4,11 @@
 	<input type="text" name="search" size="30" value="" autocomplete="off">
 	<input type="submit" value="ค้นหาข้อมูล"></center>
 </form>
-<font size ="5" ><center><b><u>แสดงข้อมูลกลุ่มวิชา</b></u></center></font>
+<font size ="5" ><center><b><u>แสดงข้อมูลรายวิชา</b></u></center></font>
 <?php
-include_once('conn.php');
-$search = isset($_GET['search']) ? $_GET['search']:'';
-$sql = "SELECT * FROM group_sub WHERE name_sub LIKE '%$search%'";
-//$conn= mysqli_connect("localhost","root","","capacity") 
-//or die("Error: " . mysqli_error($conn));
-mysqli_query($conn, "SET NAMES 'utf8' ");
-//query
-$query=mysqli_query($conn,"SELECT COUNT(name_sub) FROM group_sub WHERE name_sub LIKE '%$search%'");
+	require 'conn.php';
+	$search = isset($_GET['search']) ? $_GET['search']: '';
+	$query = mysqli_query($conn,"SELECT COUNT(d_id2) FROM course WHERE d_name LIKE '%$search%'");
 	$row = mysqli_fetch_row($query);
 
 	$rows = $row[0];
@@ -41,14 +36,18 @@ $query=mysqli_query($conn,"SELECT COUNT(name_sub) FROM group_sub WHERE name_sub 
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-	$nquery=mysqli_query($conn,"SELECT * from  group_sub WHERE name_sub LIKE '%$search%' $limit");
+	$q = "select * FROM course WHERE d_name";
+    $q = "select group_sub.name_sub, course.d_id, course.id_sub, course.d_id2, course.d_name, course.d_eng, course.d_credit ";
+    $q .= "from course inner join group_sub ON group_sub.id_sub = course.id_sub ";	
+	$q .= "order by course.d_id, course.d_id $limit";
+	$result = mysqli_query($conn,$q);
 
 	$paginationCtrls = '';
 
 	if($last != 1){
 
 	if ($pagenum > 1) {
-$previous = $pagenum - 1;
+	$previous = $pagenum - 1;
 		$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'" class="btn btn-info">Previous</a> &nbsp; &nbsp; ';
 
 		for($i = $pagenum-4; $i < $pagenum; $i++){
@@ -89,22 +88,32 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 					<table width="80%" class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr class="info" >
-							<th>ชื่อกลุ่มวิชา</th>
+							<th><center>กลุ่มวิชา</th>
+							<th><center>รหัสรายวิชา</th>
+							<th><center>ชื่อรายวิชาภาษาไทย</th>
+							<th><center>ชื่อรายวิชาภาษาอังกฤษ</th>
+							<th><center>หน่วยกิต</th>
 							<th><center>แก้ไขข้อมูล</th>
 							<th><center>ลบข้อมูล</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-								while($crow = mysqli_fetch_array($nquery)){
+								while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 							?>
 							<tr>
-								<td><?php echo $crow['name_sub']; ?></td>
-								<td><center><?php echo "<a href='update_form_group.php?id_sub=".$crow['id_sub']."'><img src='edit.png' width='20px' height='20px'></a></td></a>"; ?></td>
-								<td><center><?php echo "<a href='delete_group.php?id_sub=".$crow['id_sub']."' onclick='return confirm(\"คุณต้องการที่จะลบข้อมูลนี้หรือไม่ ?\")'><img src='delete.png' width='20px' height='20px'></a></td></a>"; ?></td>
+								<td><?php echo $row['name_sub']; ?></td>
+								<td><center><?php echo $row['d_id2']; ?></td>
+								<td><?php echo $row['d_name']; ?></td>
+								<td><?php echo $row['d_eng']; ?></td>
+								<td><center><?php echo $row['d_credit']; ?></td>
+								<td><center><?php echo "<a href='update_form_course.php?d_id=".$row['d_id']."'><img src='edit.png' width='20px' height='20px'></a></td></a>"; ?></td>
+								<td><center><?php echo "<a href='delete_course.php?d_id=".$row['d_id']."' onclick='return confirm(\"คุณต้องการที่จะลบข้อมูลนี้หรือไม่ ?\")'><img src='delete.png' width='20px' height='20px'></a></td></a>"; ?></td>
 							</tr>
 							<?php
 									}
+									mysqli_free_result($result);
+							mysqli_close($conn);
 							?>
 						</tbody>
 					</table>
@@ -122,5 +131,5 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 	https://www.sourcecodester.com/tutorials/php/11606/simple-pagination-using-phpmysqli.html
 
 	-->
-	<a href="insert_form_group.php"><center>เพิ่มข้อมูล</center></a>
+	<a href="insert_form_course.php"><center>เพิ่มข้อมูล</center></a>
 	
