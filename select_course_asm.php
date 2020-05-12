@@ -64,10 +64,7 @@
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-    $q = "select course.d_name, course.d_eng, course_assessment.d_id, course_assessment.asm_id ";
-    $q .= "from course_assessment inner join course ON course.d_id = course_assessment.d_id ";
-	$q .= " $search ";	
-	$q .= "order by course_assessment.d_id, course_assessment.asm_id $limit";
+    $q = "select * from course_ ";
 	//echo "SQL : ".$q."<BR>";
 	$result = mysqli_query($conn,$q);
 

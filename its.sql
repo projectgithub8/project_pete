@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11 พ.ค. 2020 เมื่อ 05:00 PM
--- เวอร์ชันของเซิร์ฟเวอร์: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: May 12, 2020 at 10:14 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `course`
+-- Table structure for table `course`
 --
 
 CREATE TABLE `course` (
@@ -38,7 +37,7 @@ CREATE TABLE `course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- dump ตาราง `course`
+-- Dumping data for table `course`
 --
 
 INSERT INTO `course` (`d_id`, `id_sub`, `d_id2`, `d_name`, `d_eng`, `d_credit`) VALUES
@@ -57,18 +56,19 @@ INSERT INTO `course` (`d_id`, `id_sub`, `d_id2`, `d_name`, `d_eng`, `d_credit`) 
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `course_assessment`
+-- Table structure for table `course_asm`
 --
 
-CREATE TABLE `course_assessment` (
+CREATE TABLE `course_asm` (
   `asm_id` int(11) NOT NULL,
-  `std_id` int(11) NOT NULL
+  `std_id` int(11) NOT NULL,
+  `d_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `group_sub`
+-- Table structure for table `group_sub`
 --
 
 CREATE TABLE `group_sub` (
@@ -77,7 +77,7 @@ CREATE TABLE `group_sub` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `group_sub`
+-- Dumping data for table `group_sub`
 --
 
 INSERT INTO `group_sub` (`id_sub`, `name_sub`) VALUES
@@ -90,7 +90,7 @@ INSERT INTO `group_sub` (`id_sub`, `name_sub`) VALUES
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `standard`
+-- Table structure for table `standard`
 --
 
 CREATE TABLE `standard` (
@@ -100,7 +100,7 @@ CREATE TABLE `standard` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `standard`
+-- Dumping data for table `standard`
 --
 
 INSERT INTO `standard` (`id`, `standard_id`, `standard_name`) VALUES
@@ -114,7 +114,7 @@ INSERT INTO `standard` (`id`, `standard_id`, `standard_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- โครงสร้างตาราง `standard_2`
+-- Table structure for table `standard_2`
 --
 
 CREATE TABLE `standard_2` (
@@ -125,7 +125,7 @@ CREATE TABLE `standard_2` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- dump ตาราง `standard_2`
+-- Dumping data for table `standard_2`
 --
 
 INSERT INTO `standard_2` (`std_id`, `id`, `id_small`, `std_name`) VALUES
@@ -160,9 +160,9 @@ ALTER TABLE `course`
   ADD PRIMARY KEY (`d_id`);
 
 --
--- Indexes for table `course_assessment`
+-- Indexes for table `course_asm`
 --
-ALTER TABLE `course_assessment`
+ALTER TABLE `course_asm`
   ADD PRIMARY KEY (`asm_id`);
 
 --
