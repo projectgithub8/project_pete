@@ -34,7 +34,7 @@
 		$search = " ";
 	}
 	//$search = isset($_GET['groupid']) ? $_GET['groupid']: '';
-	$sql_count = "SELECT COUNT(asm_id) FROM course_assessment $search ;";
+	$sql_count = "SELECT COUNT(d_id) FROM course_asm $search ;";
 	//echo "SQL : ".$sql_count."<BR>";
 	$query = mysqli_query($conn,$sql_count);
 	$row = mysqli_fetch_row($query);
@@ -64,7 +64,7 @@
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-    $q = "select * from course_ ";
+    $q = "SELECT * FROM course_asm INNER JOIN course ON course_asm.d_id = course.d_id ";
 	//echo "SQL : ".$q."<BR>";
 	$result = mysqli_query($conn,$q);
 
@@ -133,9 +133,10 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 								while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 							?>
 							<tr>
-								<td><?php echo $row['asm_id']; ?></td>
+								<td><?php echo $row['d_id']; ?></td>
 								<td><?php echo $row['d_name']; ?></td>
 								<td><?php echo $row['d_eng']; ?></td>
+								<td><a href="insert_form_course.php"><img src='delete.png' width='20px' height='20px'></td>
 							</tr>
 							<?php
 									}
