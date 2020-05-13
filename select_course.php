@@ -19,7 +19,7 @@
 	<input type="text" name="cname_th" size="30" value="" autocomplete="off">
 <BR><strong><center>ชื่อรายวิชาภาษาอังกฤษ</strong>
 	<input type="text" name="cname_en" size="30" value="" autocomplete="off">
-	<input type="submit" value="ค้นหาข้อมูล"></center>
+	<input type="submit" value="ค้นหา"></center>
 </form>
 <font size ="5" ><center><b><u>แสดงข้อมูลรายวิชา</b></u></center></font>
 <?php

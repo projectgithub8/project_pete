@@ -2,7 +2,7 @@
 <form method="get" id="form" enctype="multipart/form-data" action="" >
 <BR><strong><center>ค้นหาข้อมูล</strong>
 	<input type="text" name="search" size="30" value="" autocomplete="off">
-	<input type="submit" value="ค้นหาข้อมูล"></center>
+	<input type="submit" value="ค้นหา"></center>
 </form>
 <font size ="5" ><center><b><u>แสดงข้อมูลกลุ่มวิชา</b></u></center></font>
 <?php
