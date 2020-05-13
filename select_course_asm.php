@@ -41,7 +41,7 @@ $query=mysqli_query($conn,"SELECT COUNT(d_name) FROM course WHERE d_name LIKE '%
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-	$nquery=mysqli_query($conn,"SELECT * from  course WHERE d_name LIKE '%$search%' $limit");
+	$nquery=mysqli_query($conn,"SELECT * from  course WHERE d_name LIKE '%$search%' OR d_eng LIKE '%$search%' $limit");
 
 	$paginationCtrls = '';
 
