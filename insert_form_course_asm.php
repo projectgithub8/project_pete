@@ -1,12 +1,12 @@
 <?php
 include_once('conn.php');
 $search = isset($_GET['search']) ? $_GET['search']:'';
-$sql = "SELECT * FROM group_sub WHERE name_sub LIKE '%$search%'";
+$sql = "SELECT * FROM standard_2 WHERE std_name LIKE '%$search%'";
 $conn= mysqli_connect("localhost","root","","its") 
 or die("Error: " . mysqli_error($conn));
 mysqli_query($conn, "SET NAMES 'utf8' ");
 //query
-$query=mysqli_query($conn,"SELECT COUNT(name_sub) FROM group_sub WHERE name_sub LIKE '%$search%'");
+$query=mysqli_query($conn,"SELECT COUNT(std_name) FROM standard_2 WHERE std_name LIKE '%$search%'");
 	$row = mysqli_fetch_row($query);
 
 	$rows = $row[0];
@@ -34,7 +34,7 @@ $query=mysqli_query($conn,"SELECT COUNT(name_sub) FROM group_sub WHERE name_sub 
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 
-	$nquery=mysqli_query($conn,"SELECT * from  group_sub WHERE name_sub LIKE '%$search%' $limit");
+	$nquery=mysqli_query($conn,"SELECT * from  standard_2 WHERE std_name LIKE '%$search%' $limit");
 
 	$paginationCtrls = '';
 
@@ -73,7 +73,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-	<form action="insert_course.php" method="post">
+	<form action="insert_course_asm.php" method="post">
 		<div" rel="nofollow">
 			<div style="height: 20px;"></div>
 			<div class="row">
@@ -95,10 +95,10 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 								while($crow = mysqli_fetch_array($nquery)){
 							?>
 							<tr>
-								<td><center></td>
-								<td><center></td>
-								<td><center></td>
-								<td><center></td>
+								<td><center><?php echo $crow['std_id']; ?></td>
+								<td><center><?php echo $crow['id']; ?></td>
+								<td><center><?php echo $crow['id_small']; ?></td>
+								<td><center><?php echo $crow['std_name']; ?></td>
 								<td><center><input type ="checkbox" name="choose" value="choose"></td>
 							</tr>
 							<?php
