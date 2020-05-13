@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2020 at 10:14 PM
+-- Generation Time: May 13, 2020 at 05:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -52,18 +52,6 @@ INSERT INTO `course` (`d_id`, `id_sub`, `d_id2`, `d_name`, `d_eng`, `d_credit`) 
 (52, 7, '406-12-03', 'นันทนาการกลางแจ้ง', 'Outdoor Recreation', '1(0-2-1)'),
 (53, 7, '406-12-04', 'กิจกรรม', 'Activities', '1(0-2-1)'),
 (54, 3, '401-11-01', 'เทคโนโลยีคอมพิวเตอร์และการซ่อมบำรุงอุปกรณ์ทางเทคโนโลยีสารสนเทศ', 'Recreation', '1(0-2-1)');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `course_asm`
---
-
-CREATE TABLE `course_asm` (
-  `asm_id` int(11) NOT NULL,
-  `std_id` int(11) NOT NULL,
-  `d_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -158,12 +146,6 @@ INSERT INTO `standard_2` (`std_id`, `id`, `id_small`, `std_name`) VALUES
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`d_id`);
-
---
--- Indexes for table `course_asm`
---
-ALTER TABLE `course_asm`
-  ADD PRIMARY KEY (`asm_id`);
 
 --
 -- Indexes for table `group_sub`
