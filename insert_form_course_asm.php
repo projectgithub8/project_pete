@@ -11,7 +11,7 @@ $query=mysqli_query($conn,"SELECT COUNT(std_name) FROM standard_2 WHERE std_name
 
 	$rows = $row[0];
 
-	$page_rows = 15;  //จำนวนข้อมูลที่ต้องการให้แสดงใน 1 หน้า  ตย. 5 record / หน้า 
+	$page_rows = 30;  //จำนวนข้อมูลที่ต้องการให้แสดงใน 1 หน้า  ตย. 5 record / หน้า 
 
 	$last = ceil($rows/$page_rows);
 
@@ -98,7 +98,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 								<td><center><?php echo $crow['std_id']; ?></td>
 								<td><center><?php echo $crow['id']; ?></td>
 								<td><center><?php echo $crow['id_small']; ?></td>
-								<td><center><?php echo $crow['std_name']; ?></td>
+								<td><?php echo $crow['std_name']; ?></td>
 								<td><center><input type ="checkbox" name="choose" value="choose"></td>
 							</tr>
 							<?php
