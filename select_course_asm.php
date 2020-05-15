@@ -90,6 +90,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 						<thead>
 							<tr class="info" >
 							<th><center>ลำดับ</th>
+							<th><center>รหัสรายวิชา</th>
 							<th><center>ชื่อวิชาภาษาไทย</th>
 							<th><center>ชื่อวิชาภาษาอังกฤษ</th>
 							<th><center>จัดการเกณฑ์ประเมิน</th>
@@ -101,6 +102,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 							?>
 							<tr>
                                 <td><center><?php echo $crow['d_id']; ?></td>
+								<td><center><?php echo $crow['d_id2']; ?></td>
 								<td><?php echo $crow['d_name']; ?></td>
 								<td><?php echo $crow['d_eng']; ?></td>
 								<td><center><a href="insert_form_course_asm.php"><img src='edit.png' width='20px' height='20px'></td>
