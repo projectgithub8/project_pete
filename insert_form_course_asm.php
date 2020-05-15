@@ -33,6 +33,11 @@ $query=mysqli_query($conn,"SELECT COUNT(std_name) FROM standard_2 WHERE std_name
 	}
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
+	
+	$q = "select * FROM standard_2 WHERE std_name";
+    $q = "select standard_2.std_id ,standard.standard_group ,standard_2.id_small, standard_2.std_name ";
+    $q .= "from standard_2 inner join standard ON standard.id = standard_2.id ";
+	$result = mysqli_query($conn,$q);
 
 	$nquery=mysqli_query($conn,"SELECT * from  standard_2 WHERE std_name LIKE '%$search%' $limit");
 
@@ -92,17 +97,19 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 						</thead>
 						<tbody>
 							<?php
-								while($crow = mysqli_fetch_array($nquery)){
+								while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 							?>
 							<tr>
-								<td><center><?php echo $crow['std_id']; ?></td>
-								<td><center><?php echo $crow['id']; ?></td>
-								<td><center><?php echo $crow['id_small']; ?></td>
-								<td><?php echo $crow['std_name']; ?></td>
+								<td><center><?php echo $row['std_id']; ?></td>
+								<td><center><?php echo $row['standard_group']; ?></td>
+								<td><center><?php echo $row['id_small']; ?></td>
+								<td><?php echo $row['std_name']; ?></td>
 								<td><center><input type ="checkbox" name="choose" value="choose"></td>
 							</tr>
 							<?php
 									}
+							mysqli_free_result($result);
+							mysqli_close($conn);
 							?>
 						</tbody>
 					</table>

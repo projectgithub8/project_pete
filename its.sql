@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2020 at 06:09 AM
+-- Generation Time: May 15, 2020 at 09:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -83,21 +83,21 @@ INSERT INTO `group_sub` (`id_sub`, `name_sub`) VALUES
 
 CREATE TABLE `standard` (
   `id` int(10) NOT NULL,
+  `standard_name` varchar(250) NOT NULL,
   `standard_id` int(5) NOT NULL,
-  `standard_name` varchar(250) NOT NULL
+  `standard_group` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `standard`
 --
 
-INSERT INTO `standard` (`id`, `standard_id`, `standard_name`) VALUES
-(1, 11, 'ด้านคุณธรรม จริยธรรม'),
-(2, 21, 'ด้านความรู้'),
-(3, 31, 'ด้านปัญญา'),
-(4, 41, 'ด้านความสัมพันธ์ระหว่างบุคคลและความรับผิดชอบ'),
-(5, 51, 'ด้านทักษะการวิเคราะห์เชิงตัวเลข การสื่อสาร และการใช้เทคโนโลยีสารสนเทศ'),
-(11, 11, 'xz');
+INSERT INTO `standard` (`id`, `standard_name`, `standard_id`, `standard_group`) VALUES
+(1, 'ด้านคุณธรรม จริยธรรม', 11, 'ม.1'),
+(2, 'ด้านความรู้', 21, 'ม.2'),
+(3, 'ด้านปัญญา', 31, 'ม.3'),
+(4, 'ด้านความสัมพันธ์ระหว่างบุคคลและความรับผิดชอบ', 41, 'ม.4'),
+(5, 'ด้านทักษะการวิเคราะห์เชิงตัวเลข การสื่อสาร และการใช้เทคโนโลยีสารสนเทศ', 51, 'ม.5');
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,7 @@ ALTER TABLE `group_sub`
 -- AUTO_INCREMENT for table `standard`
 --
 ALTER TABLE `standard`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `standard_2`
