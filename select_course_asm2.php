@@ -1,9 +1,16 @@
+<center><img src="header.jpg"></center>
+<form method="get" id="form" enctype="multipart/form-data" action="" >
+<BR><strong><center>ค้นหาข้อมูล</strong>
+	<input type="text" name="search" size="30" value="" autocomplete="off">
+	<input type="submit" value="ค้นหา"></center>
+</form>
+<font size ="5" ><center><b><u>แสดงข้อมูลเกณฑ์การประเมิน</b></u></center></font>
 <?php
 include_once('conn.php');
 $search = isset($_GET['search']) ? $_GET['search']:'';
 $sql = "SELECT * FROM standard_2 WHERE std_name LIKE '%$search%'";
-$conn= mysqli_connect("localhost","root","","its") 
-or die("Error: " . mysqli_error($conn));
+//$conn= mysqli_connect("localhost","root","","capacity") 
+//or die("Error: " . mysqli_error($conn));
 mysqli_query($conn, "SET NAMES 'utf8' ");
 //query
 $query=mysqli_query($conn,"SELECT COUNT(std_name) FROM standard_2 WHERE std_name LIKE '%$search%'");
@@ -32,9 +39,9 @@ $query=mysqli_query($conn,"SELECT COUNT(std_name) FROM standard_2 WHERE std_name
 		$pagenum = $last;
 	}
 
-	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-	
-	$q = "select * FROM standard_2 WHERE std_name";
+    $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
+    
+    $q = "select * FROM standard_2 WHERE std_name";
     $q = "select standard_2.std_id ,standard.standard_name ,standard_2.id_small, standard_2.std_name ";
     $q .= "from standard_2 inner join standard ON standard.id = standard_2.id ";
 	$result = mysqli_query($conn,$q);
@@ -78,7 +85,6 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-	<form action="insert_course_asm.php" method="post">
 		<div" rel="nofollow">
 			<div style="height: 20px;"></div>
 			<div class="row">
@@ -92,23 +98,23 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 							<th><center>มาตรฐานการเรียนรู้</th>
 							<th><center>รหัสมาตรฐานย่อย</th>
 							<th><center>ชื่อมาตรฐานการเรียนรู้ย่อย</th>
-							<th><center>คลิกเกณฑ์ประเมิน</th>
+							<th><center>เกณฑ์ประเมิน</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-								while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+								while($crow = mysqli_fetch_array($result, MYSQLI_ASSOC)){
 							?>
 							<tr>
-								<td><center><?php echo $row['std_id']; ?></td>
-								<td><center><?php echo $row['standard_name']; ?></td>
-								<td><center><?php echo $row['id_small']; ?></td>
-								<td><?php echo $row['std_name']; ?></td>
-								<td><center><input type ="checkbox" name="choose" value="choose"></td>
+                                <td><center><?php echo $crow['std_id']; ?></td>
+								<td><center><?php echo $crow['standard_name']; ?></td>
+								<td><center><?php echo $crow['id_small']; ?></td>
+								<td><?php echo $crow['std_name']; ?></td>
+								<td><center><a href="update_form_course_asm.php"><img src='edit.png' width='20px' height='20px'></td>
 							</tr>
 							<?php
-									}
-							mysqli_free_result($result);
+                                    }
+                                    mysqli_free_result($result);
 							mysqli_close($conn);
 							?>
 						</tbody>
@@ -119,7 +125,12 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 				</div>
 			</div>
 		</div>
-		<center><input type= "submit" value="บันทึก">
-		<input type= "reset" value="ยกเลิก"></center>
 	</body>
 </html>
+
+<!-- Ref : 
+
+	https://www.sourcecodester.com/tutorials/php/11606/simple-pagination-using-phpmysqli.html
+
+	-->
+	

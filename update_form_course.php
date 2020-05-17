@@ -10,7 +10,7 @@ $rowpro = mysqli_fetch_array($respro, MYSQLI_ASSOC);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>แก้ไขข้อมูลนักศึกษา</title>
+        <title>แก้ไขข้อมูลรายวิชา</title>
         <style>   /*--เพิ่ม style เข้ามาด้วย*/
             label{
                 display: block;
