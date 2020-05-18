@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2020 at 09:46 AM
+-- Generation Time: May 18, 2020 at 04:17 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -84,20 +84,19 @@ INSERT INTO `group_sub` (`id_sub`, `name_sub`) VALUES
 CREATE TABLE `standard` (
   `id` int(10) NOT NULL,
   `standard_name` varchar(250) NOT NULL,
-  `standard_id` int(5) NOT NULL,
-  `standard_group` varchar(10) NOT NULL
+  `standard_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `standard`
 --
 
-INSERT INTO `standard` (`id`, `standard_name`, `standard_id`, `standard_group`) VALUES
-(1, 'ด้านคุณธรรม จริยธรรม', 11, 'ม.1'),
-(2, 'ด้านความรู้', 21, 'ม.2'),
-(3, 'ด้านปัญญา', 31, 'ม.3'),
-(4, 'ด้านความสัมพันธ์ระหว่างบุคคลและความรับผิดชอบ', 41, 'ม.4'),
-(5, 'ด้านทักษะการวิเคราะห์เชิงตัวเลข การสื่อสาร และการใช้เทคโนโลยีสารสนเทศ', 51, 'ม.5');
+INSERT INTO `standard` (`id`, `standard_name`, `standard_id`) VALUES
+(1, 'ด้านคุณธรรม จริยธรรม', 11),
+(2, 'ด้านความรู้', 21),
+(3, 'ด้านปัญญา', 31),
+(4, 'ด้านความสัมพันธ์ระหว่างบุคคลและความรับผิดชอบ', 41),
+(5, 'ด้านทักษะการวิเคราะห์เชิงตัวเลข การสื่อสาร และการใช้เทคโนโลยีสารสนเทศ', 51);
 
 -- --------------------------------------------------------
 
@@ -135,7 +134,9 @@ INSERT INTO `standard_2` (`std_id`, `id`, `id_small`, `std_name`) VALUES
 (44, 5, 510, 'สามารถวิเคราะห์ สังเคราะห์ เหมาะสมและประเมินค่าสารสนเทศอย่าง'),
 (46, 5, 520, 'สามารถใช้เทคโนโลยีสารสนเทศในการสื่อสาร สืบค้นข้อมูล รวบรวม วิเคราะห์และนำเสนออย่างมีประสิทธิภาพ'),
 (47, 5, 530, 'ทักษะการวิเคราะห์เชิงตัวเลข เพื่อประยุกต์ใช้และแก้ปัญหาในชีวิตประจำวัน'),
-(48, 5, 540, 'ใช้ภาษาสื่อสาร สื่อความหมายได้อย่างมีประสิทธิภาพและสร้างสรรค์');
+(48, 5, 540, 'ใช้ภาษาสื่อสาร สื่อความหมายได้อย่างมีประสิทธิภาพและสร้างสรรค์'),
+(50, 0, 0, ''),
+(51, 0, 0, '');
 
 --
 -- Indexes for dumped tables
@@ -191,7 +192,7 @@ ALTER TABLE `standard`
 -- AUTO_INCREMENT for table `standard_2`
 --
 ALTER TABLE `standard_2`
-  MODIFY `std_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `std_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

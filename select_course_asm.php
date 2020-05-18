@@ -4,7 +4,7 @@
 	<input type="text" name="search" size="30" value="" autocomplete="off">
 	<input type="submit" value="ค้นหา"></center>
 </form>
-<font size ="5" ><center><b><u>แสดงข้อมูลรายวิชา</b></u></center></font>
+<font size ="5" ><center><b><u>การจัดการรายวิชากับเกณฑ์การประเมิน</b></u></center></font>
 <?php
 include_once('conn.php');
 $search = isset($_GET['search']) ? $_GET['search']:'';
