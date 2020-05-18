@@ -105,7 +105,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 								<td><center><?php echo $crow['d_id2']; ?></td>
 								<td><?php echo $crow['d_name']; ?></td>
 								<td><?php echo $crow['d_eng']; ?></td>
-								<td><center><a href="insert_form_course_asm.php"><img src='edit.png' width='20px' height='20px'></td>
+								<td><center><?php echo "<a href='update_form_course_asm.php?d_id=".$row['d_id']."'><img src='edit.png' width='20px' height='20px'></a></td></a>"; ?></td>
 							</tr>
 							<?php
 									}

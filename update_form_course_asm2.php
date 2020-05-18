@@ -1,40 +1,60 @@
-<?php  //update_form_course.php
-include_once('conn.php');
-$std_id = $_GET["std_id"];
-$sql = ("SELECT
-			standard_name
-            id_small
-            std_name
-		FROM standard_2
-		WHERE std_id = $std_id");
-$res = mysqli_query($conn,$sql)
-	or die ("Error cannot select data".
-	mysqli_error($conn)); 
-while($row = mysqli_fetch_array($res))
-{
-    $id_small = $row["id_small"];
-    $std_name = $row["std_name"];
-}
-mysqli_free_result($res);
-mysqli_close($conn);
+<?php
+require 'conn.php';
+$d_id = $_GET['d_id'];
+$sqlpro = "select * from course where d_id = '$d_id' ";
+$respro = mysqli_query($conn, $sqlpro);
+$rowpro = mysqli_fetch_array($respro, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
+
 <html>
-<body>
-<form action="update_course_asm.php" method="post">
-	<input type="hidden" name="std_id" value=<?php echo $std_id;?>>
-	<table align = center width = "20%" border = "0">
-	<tr align = center><td><p style="font-size:19px"><b>ข้อมูลกลุ่มวิชา</td></tr></table>
-	<table align = center width = "35%" border = "0">
-		<tr><td align = right><b>มาตรฐานการเรียนรู้</td><td> <input type="text"name="standard_name" value=<?php echo $standard_name; ?>><br></td></tr>
-        <tr><td align = right><b>รหัสมาตรฐานย่อย</td><td> <input type="text"name="id_small" value=<?php echo $id_small; ?>><br></td></tr>
-        <tr><td align = right><b>ชื่อมาตรฐานการเรียนรู้ย่อย</td><td> <input type="text"name="std_name" value=<?php echo $std_name; ?>><br></td></tr>
-        <tr><td align = right><b>เกณฑ์ประเมิน</td><td> <input type="checkbox"name="choose" value=<?php echo $choose; ?>><br></td></tr>
-		<tr><td><b> </td><td> </td></tr>
-		<tr><td><b></td>
-		<td><input type= "submit" value="แก้ไข">
-		<input type= "reset" value="ยกเลิก"><br></td></tr>
-</table> <br>
-</form>
-</body>
-<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>แก้ไขข้อมูลรายวิชา</title>
+        <style>   /*--เพิ่ม style เข้ามาด้วย*/
+            label{
+                display: block;
+            }
+        </style>
+    </head>
+	<center>
+    <body> 
+        <h2>แก้ไขข้อมูลรายวิชา</h2>
+		<form action = "update_course.php" method = "post" enctype = "multipart/form-data" id = "form1">
+            <fieldset style = "width : 470px; height : 250px;" >
+			<table align = center width = 450px border = "0">
+                <legend><b style = "font-size : 20px">แก้ไขข้อมูลรายวิชา</legend>
+				<input name="d_id" type="hidden" id="d_id" size="20" value="<?=$rowpro['d_id']?>">
+				<center>
+				<tr><td><label><b>กลุ่มวิชา : </label></td>
+				<td>
+                <?php
+                    $sql="select * from group_sub";
+                    $result= mysqli_query($conn,$sql);
+                ?>
+                <select name = "id_sub" id = "id_sub">
+                    <option value = "">---กรุณาเลือกกลุ่มวิชา---</option>  
+                    <?php
+                        while ($row= mysqli_fetch_array($result, MYSQLI_NUM)) {
+							if ( $rowpro['id_sub']== $row[0] ){
+                                echo "<option value = '$row[0]' selected>$row[1]</option>";
+							}else{
+								echo "<option value = '$row[0]'>$row[1]</option>";
+                            }								
+                        }
+                    ?>
+                </select>
+				<tr><td><label><b> รหัสรายวิชา: </label></td><td><input name="d_id2" type="text" id="d_id2"  value="<?=$rowpro['d_id2']?>"></td></tr>  
+                <tr><td><label><b> ชื่อรายวิชาภาษาไทย:   </label></td><td><input name="d_name" type="text" id="d_name"  value="<?=$rowpro['d_name']?>"></td></tr> 
+				<tr><td><label><b>ชื่อรายวิชาภาษาอังกฤษ: </label></td><td><input name="d_eng" type="text" id="d_eng"  value="<?=$rowpro['d_eng']?>"></td></tr>
+				<tr><td><label><b>หน่วยกิต: </label></td><td><input name="d_credit" type="text" id="d_credit"  value="<?=$rowpro['d_credit']?>"></td></tr>
+				<input type="hidden" id="d_id" value = <?php echo $rowpro['d_id'];?>>
+				<tr><td><b> </td><td> </td></tr>
+				<tr><td><b></td>
+				<td><input type= "submit" value="แก้ไข">
+				<input type= "reset" value="ยกเลิก"><br></td></tr>
+            </fieldset>
+         </form>
+    </body>
+	</center>
+</html>
