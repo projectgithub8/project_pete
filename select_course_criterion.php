@@ -8,12 +8,12 @@
 <?php
 include_once('conn.php');
 $search = isset($_GET['search']) ? $_GET['search']:'';
-$sql = "SELECT * FROM course WHERE d_name LIKE '%$search%'";
+$sql = "SELECT * FROM criterion WHERE std_name LIKE '%$search%'";
 //$conn= mysqli_connect("localhost","root","","capacity") 
 //or die("Error: " . mysqli_error($conn));
 mysqli_query($conn, "SET NAMES 'utf8' ");
 //query
-$query=mysqli_query($conn,"SELECT COUNT(d_name) FROM course WHERE d_name LIKE '%$search%'");
+$query=mysqli_query($conn,"SELECT COUNT(std_name) FROM criterion WHERE std_name LIKE '%$search%'");
 	$row = mysqli_fetch_row($query);
 
 	$rows = $row[0];
@@ -40,8 +40,12 @@ $query=mysqli_query($conn,"SELECT COUNT(d_name) FROM course WHERE d_name LIKE '%
 	}
 
 	$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
+	$q = "select * FROM criterion WHERE std_name";
+    $q = "select standard_2.std_id ,standard.standard_name ,standard_2.id_small, standard_2.std_name ";
+    $q .= "from standard_2 inner join standard ON standard.id = standard_2.id ";
+	$result = mysqli_query($conn,$q);
 
-	$nquery=mysqli_query($conn,"SELECT * from  course WHERE d_name LIKE '%$search%' OR d_eng LIKE '%$search%' $limit");
+	$nquery=mysqli_query($conn,"SELECT * from  criterion WHERE d_id2 LIKE '%$search%' OR d_id2 LIKE '%$search%' $limit");
 
 	$paginationCtrls = '';
 
@@ -80,7 +84,7 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<div" rel="nofollow">
+		<div rel="nofollow">
 			<div style="height: 20px;"></div>
 			<div class="row">
 				<div class="col-lg-2">
@@ -91,9 +95,10 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 							<tr class="info" >
 							<th><center>ลำดับ</th>
 							<th><center>รหัสรายวิชา</th>
-							<th><center>ชื่อวิชาภาษาไทย</th>
-							<th><center>ชื่อวิชาภาษาอังกฤษ</th>
-							<th><center>จัดการเกณฑ์ประเมิน</th>
+							<th><center>รหัสมาตรฐานการเรียนรู้</th>
+							<th><center>ชรหัสมาตรฐานย่อย</th>
+							<th><center>ชื่อมาตรฐานการเรียนรู้ย่อย</th>
+							<th><center>แก้ไขเกณฑ์การประเมิน</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -101,11 +106,12 @@ $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next
 								while($crow = mysqli_fetch_array($nquery)){
 							?>
 							<tr>
-                                <td><center><?php echo $crow['d_id']; ?></td>
+                                <td><center><?php echo $crow['id_criterion']; ?></td>
 								<td><center><?php echo $crow['d_id2']; ?></td>
-								<td><?php echo $crow['d_name']; ?></td>
-								<td><?php echo $crow['d_eng']; ?></td>
-								<td><center><?php echo "<a href = 'insert_form_course_asm.php?d_id=".$crow['d_id']."'><img src='edit.png' width='20px' height='20px'></a></td></a>"; ?></td>
+								<td><?php echo $crow['id']; ?></td>
+								<td><?php echo $crow['id_small']; ?></td>
+								<td><?php echo $crow['std_name']; ?></td>
+								<td><center><?php echo "<a href = 'insert_form_course_asm.php?id_criterion=".$crow['id_criterion']."'><img src='edit.png' width='20px' height='20px'></a></td></a>"; ?></td>
 							</tr>
 							<?php
 									}

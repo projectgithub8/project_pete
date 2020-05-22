@@ -1,7 +1,7 @@
 <?php
 require 'conn.php';
-$std_id = $_GET['std_id'];
-$sqlpro = "select * from standard_2 where std_id = '$std_id' ";
+$d_id = $_GET['d_id'];
+$sqlpro = "select * from course where d_id = '$d_id' ";
 $respro = mysqli_query($conn, $sqlpro);
 $rowpro = mysqli_fetch_array($respro, MYSQLI_ASSOC);
 $query=mysqli_query($conn,"SELECT COUNT(std_name) FROM standard_2 WHERE std_name LIKE '%$search%'");

@@ -26,28 +26,11 @@ $rowpro = mysqli_fetch_array($respro, MYSQLI_ASSOC);
                 <legend><b style = "font-size : 20px">แก้ไขข้อมูลรายวิชา</legend>
 				<input name="d_id" type="hidden" id="d_id" size="20" value="<?=$rowpro['d_id']?>">
 				<center>
-				<tr><td><label><b>กลุ่มวิชา : </label></td>
-				<td>
-                <?php
-                    $sql="select * from group_sub";
-                    $result= mysqli_query($conn,$sql);
-                ?>
-                <select name = "id_sub" id = "id_sub">
-                    <option value = "">---กรุณาเลือกกลุ่มวิชา---</option>  
-                    <?php
-                        while ($row= mysqli_fetch_array($result, MYSQLI_NUM)) {
-							if ( $rowpro['id_sub']== $row[0] ){
-                                echo "<option value = '$row[0]' selected>$row[1]</option>";
-							}else{
-								echo "<option value = '$row[0]'>$row[1]</option>";
-                            }								
-                        }
-                    ?>
-                </select>
-				<tr><td><label><b> รหัสรายวิชา: </label></td><td><input name="d_id2" type="text" id="d_id2"  value="<?=$rowpro['d_id2']?>"></td></tr>  
-                <tr><td><label><b> ชื่อรายวิชาภาษาไทย:   </label></td><td><input name="d_name" type="text" id="d_name"  value="<?=$rowpro['d_name']?>"></td></tr> 
-				<tr><td><label><b>ชื่อรายวิชาภาษาอังกฤษ: </label></td><td><input name="d_eng" type="text" id="d_eng"  value="<?=$rowpro['d_eng']?>"></td></tr>
-				<tr><td><label><b>หน่วยกิต: </label></td><td><input name="d_credit" type="text" id="d_credit"  value="<?=$rowpro['d_credit']?>"></td></tr>
+				<tr><td><label><b>ลำดับ</label></td><td><input name="std_id" type="text" id="std_id"  value="<?=$rowpro['std_id']?>"></td></tr>  
+                <tr><td><label><b>มาตรฐานการเรียนรู้</label></td><td><input name="standard_name" type="text" id="standard_name"  value="<?=$rowpro['standard_name']?>"></td></tr> 
+				<tr><td><label><b>รหัสมาตรฐานย่อย</label></td><td><input name="id_small" type="text" id="id_small"  value="<?=$rowpro['id_small']?>"></td></tr>
+				<tr><td><label><b>ชื่อมาตรฐานการเรียนรู้ย่อย</label></td><td><input name="std_name" type="text" id="std_name"  value="<?=$rowpro['std_name']?>"></td></tr>
+                <tr><td><label><b>คลิกเกณฑ์ประเมิน</label></td><td><input name="choose" type="text" id="choose"  value="<?=$rowpro['choose']?>"></td></tr>
 				<input type="hidden" id="d_id" value = <?php echo $rowpro['d_id'];?>>
 				<tr><td><b> </td><td> </td></tr>
 				<tr><td><b></td>

@@ -1,14 +1,10 @@
 <?php //update_course.php
 include_once('conn.php');
-$std_id = $_POST["std_id"];
-$sql = "update standard_2 OR standard set
-		,	std_id = '$std_id'
-        ,	standard_name = '$standard_name'
-        ,	id_small = '$id_small'
-        ,	std_name = '$std_name'
+$d_id = $_POST["d_id"];
+$sql = "update standard_2
         ,	choose = '$choose'
 		WHERE
-		std_id = $std_id; ";
+		d_id = $d_id; ";
 $result= mysqli_query($conn,$sql);
 if($result){
 	echo "<script>

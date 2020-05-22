@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2020 at 04:17 AM
+-- Generation Time: May 22, 2020 at 03:28 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -52,6 +52,29 @@ INSERT INTO `course` (`d_id`, `id_sub`, `d_id2`, `d_name`, `d_eng`, `d_credit`) 
 (52, 7, '406-12-03', 'นันทนาการกลางแจ้ง', 'Outdoor Recreation', '1(0-2-1)'),
 (53, 7, '406-12-04', 'กิจกรรม', 'Activities', '1(0-2-1)'),
 (54, 3, '401-11-01', 'เทคโนโลยีคอมพิวเตอร์และการซ่อมบำรุงอุปกรณ์ทางเทคโนโลยีสารสนเทศ', 'Recreation', '1(0-2-1)');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `criterion`
+--
+
+CREATE TABLE `criterion` (
+  `id_criterion` int(10) NOT NULL,
+  `d_id2` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
+  `id_small` int(10) NOT NULL,
+  `std_name` int(100) NOT NULL,
+  `choose` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `criterion`
+--
+
+INSERT INTO `criterion` (`id_criterion`, `d_id2`, `id`, `id_small`, `std_name`, `choose`) VALUES
+(1, 0, 0, 0, 0, 'choose'),
+(2, 0, 0, 0, 0, 'choose');
 
 -- --------------------------------------------------------
 
@@ -136,7 +159,15 @@ INSERT INTO `standard_2` (`std_id`, `id`, `id_small`, `std_name`) VALUES
 (47, 5, 530, 'ทักษะการวิเคราะห์เชิงตัวเลข เพื่อประยุกต์ใช้และแก้ปัญหาในชีวิตประจำวัน'),
 (48, 5, 540, 'ใช้ภาษาสื่อสาร สื่อความหมายได้อย่างมีประสิทธิภาพและสร้างสรรค์'),
 (50, 0, 0, ''),
-(51, 0, 0, '');
+(51, 0, 0, ''),
+(52, 0, 0, ''),
+(53, 0, 0, ''),
+(54, 0, 0, ''),
+(55, 0, 0, ''),
+(56, 0, 0, ''),
+(57, 0, 0, ''),
+(58, 0, 0, ''),
+(59, 0, 0, '');
 
 --
 -- Indexes for dumped tables
@@ -147,6 +178,12 @@ INSERT INTO `standard_2` (`std_id`, `id`, `id_small`, `std_name`) VALUES
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`d_id`);
+
+--
+-- Indexes for table `criterion`
+--
+ALTER TABLE `criterion`
+  ADD PRIMARY KEY (`id_criterion`);
 
 --
 -- Indexes for table `group_sub`
@@ -177,6 +214,12 @@ ALTER TABLE `course`
   MODIFY `d_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
+-- AUTO_INCREMENT for table `criterion`
+--
+ALTER TABLE `criterion`
+  MODIFY `id_criterion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `group_sub`
 --
 ALTER TABLE `group_sub`
@@ -192,7 +235,7 @@ ALTER TABLE `standard`
 -- AUTO_INCREMENT for table `standard_2`
 --
 ALTER TABLE `standard_2`
-  MODIFY `std_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `std_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
