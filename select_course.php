@@ -5,7 +5,7 @@
 ?>
 <center><img src="header.jpg"></center>
 <form method="get" id="form" enctype="multipart/form-data" action="" >
-<BR><strong><center><label for="groupid">เลือกกลุ่มเรียน</label></strong>
+<BR><strong><center><label for="groupid">เลือกกลุ่มวิชา</label></strong>
     <select id="groupid" name="groupid">
 	            <option value="0">ทั้งหมด</option>
     <?php
